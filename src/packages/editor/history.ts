@@ -32,7 +32,7 @@ class HistoryUtil {
       if (isEqual(toJS(ref), assign)) {
         equalCb();
       } else {
-        (keys(assign) as Array<keyof typeof assign>).map((key) => {
+        (keys(assign) as Array<keyof typeof assign>).forEach((key) => {
           console.log(`key ${key} => `, assign[key]);
           ref[key] = assign[key];
         });

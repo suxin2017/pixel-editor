@@ -1,6 +1,4 @@
-import { action, autorun, makeObservable, observable } from "mobx";
-import { deepObserve } from "mobx-utils";
-import { History } from "../../packages/editor/history";
+import { action, makeObservable } from "mobx";
 import { ComponentStore } from "../../packages/render/store/Component";
 
 export interface IAddStoreProps {

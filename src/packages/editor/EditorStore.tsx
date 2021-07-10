@@ -1,12 +1,10 @@
 import { action, makeObservable, observable } from "mobx";
-import { addComponent } from "../render/common/componentLib";
 import { find } from "../render/common/dsf";
 import { ComponentStore } from "../render/store/Component";
 import React from "react";
 import { getEditorComponent, IEditorComponent } from "./componentList";
 import { deepObserve, IDisposer } from "mobx-utils";
 import { History } from "./history";
-import { v4 as uuidv4 } from "uuid";
 import { throttle } from "lodash";
 
 const disposerMap = new Map<string, IDisposer>();

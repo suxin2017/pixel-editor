@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import React from "react";
-import { isArray } from "util";
 import { prefix } from "../..";
 import "./index.sass";
 

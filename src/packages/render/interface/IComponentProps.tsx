@@ -1,6 +1,6 @@
-import { Component } from "../store/Component";
+import { ComponentStore } from "../store/Component";
 
 export interface IComponentProps {
-  props: Component["props"];
-  store: Component;
+  props: ComponentStore["props"];
+  store: ComponentStore;
 }

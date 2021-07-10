@@ -1,0 +1,8 @@
+@import '../../index.sass'
+.#{$prefix}-col
+ 
+
+@use "sass:math"
+@for $i from 1 through 12
+    .#{$prefix}-col-#{$i}
+        width: 100% / 12 * $i

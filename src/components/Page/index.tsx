@@ -1,36 +1,16 @@
 import React from "react";
-import logo from "./logo.svg";
 import { observer } from "mobx-react-lite";
-import { action, makeObservable } from "mobx";
-import { Component } from "../../packages/render/store/Component";
-
-export class PageStore extends Component<{ value: number }> {
-  constructor(initProps: {
-    initProps: { value: number };
-    name: string;
-    children?: Component[];
-  }) {
-    super(initProps);
-    makeObservable(this);
-  }
-  @action
-  increment() {
-    this.props.value++;
-  }
-}
+import { AddStore } from "./store";
+import ButtonSetting from "./Setting";
+import { IEditorComponent } from "../../packages/editor/componentList";
 
 let Page: React.FC<{
   props: { value: number };
-  store: PageStore;
+  store: AddStore;
 }> = ({ props, children, store }) => {
-  React.useEffect(() => {
-    setTimeout(() => {
-      props.value = 123;
-    }, 1000);
-  }, []);
-
+  console.log(children);
   return (
-    <div>
+    <div onClick={(e) => {}}>
       pages
       {children}
     </div>
@@ -38,11 +18,19 @@ let Page: React.FC<{
 };
 Page = observer(Page);
 
-const config = {
-  store: PageStore,
-  initConfig: {
-    name: "page",
-    initProps: { value: 0 },
-  },
+const componentConfig: IEditorComponent = {
+  name: "page",
+  icon: (
+    <img
+      src="https://img.icons8.com/dotty/80/000000/pixel-cat.png"
+      alt="icon"
+    />
+  ),
+  
+  store: AddStore,
+  component: Page,
+  initProps: { value: "" },
+  settingComponent: ButtonSetting,
 };
-export { Page, config };
+
+export default componentConfig;

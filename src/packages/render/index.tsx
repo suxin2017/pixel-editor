@@ -2,10 +2,10 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { componentLibs, getComponent } from "./common/componentLib";
 import { IComponentProps } from "./interface/IComponentProps";
-import { Component } from "./store/Component";
+import { ComponentStore } from "./store/Component";
 
 export interface IRenderProps {
-  component: Component;
+  component: ComponentStore;
 }
 
 let Render: React.FC<IRenderProps> = ({ component }) => {
@@ -13,10 +13,11 @@ let Render: React.FC<IRenderProps> = ({ component }) => {
   if (!Component) {
     throw Error("component not found");
   }
+  console.log(component);
   return (
     <Component props={component.props} store={component}>
-      {component.children?.map((child, idx) => {
-        return <Render key={idx} component={child}></Render>;
+      {component.children?.map((child) => {
+        return <Render key={child.id} component={child}></Render>;
       })}
     </Component>
   );
@@ -25,10 +26,16 @@ let Render: React.FC<IRenderProps> = ({ component }) => {
 Render = observer(Render);
 
 export interface ICreateRenderParams {
+  beforeHoc?: () => void;
   hoc?: ((Component: React.FC<IComponentProps>) => React.FC<IComponentProps>)[];
-  componentJson?: string | Component;
+  afterHoc?: () => void;
+  componentJson?: string | ComponentStore;
 }
 const createRender = (options?: ICreateRenderParams) => {
+  console.log("运行了");
+  if (options?.beforeHoc) {
+    options.beforeHoc();
+  }
   if (options?.hoc) {
     componentLibs.forEach((Com, key) => {
       const realCom = options.hoc?.reduce((c, hoc) => hoc(c), Com);
@@ -38,6 +45,9 @@ const createRender = (options?: ICreateRenderParams) => {
         throw Error("component lose ");
       }
     });
+  }
+  if (options?.afterHoc) {
+    options.afterHoc();
   }
   return Render;
 };

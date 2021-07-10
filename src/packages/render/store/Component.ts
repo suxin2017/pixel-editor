@@ -1,25 +1,21 @@
 import { autorun, makeObservable, observable, override, reaction } from "mobx";
-import { EditorStore } from "../../editor";
 import { v4 as uuidv4 } from "uuid";
-
-export class Component<Props = any> {
+type AnyObj = { [key: string]: any };
+export class ComponentStore<Props = AnyObj> {
   id: string;
 
   @observable
-  props: Props;
+  props: { $id: string } & Props;
 
   name: string;
 
   @observable
-  parent?: Component;
+  parent?: ComponentStore;
 
   @observable
-  children?: Component[];
+  children?: ComponentStore[];
 
-  @observable
-  editStore?: EditorStore;
-
-  historyStack?: Component[];
+  historyStack?: ComponentStore[];
 
   constructor({
     initProps,
@@ -29,11 +25,10 @@ export class Component<Props = any> {
   }: {
     initProps: Props;
     name: string;
-    children?: Component[];
+    children?: ComponentStore[];
     id?: string;
   }) {
     makeObservable(this);
-    this.props = initProps;
     this.name = name;
     this.children = children;
     if (this.children) {
@@ -42,17 +37,14 @@ export class Component<Props = any> {
       });
     }
     this.id = id ?? uuidv4();
+    this.props = { ...initProps, $id: this.id };
   }
 
-  getRootStore(): Component {
+  getRootStore(): ComponentStore {
     return this.parent ? this.parent.getRootStore() : this;
   }
 
-  getParent<T extends Component>() {
+  getParent<T extends ComponentStore>() {
     return this.parent as T;
-  }
-
-  getEditStore() {
-    return this.getRootStore().editStore;
   }
 }

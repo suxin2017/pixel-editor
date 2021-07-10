@@ -1,14 +1,10 @@
 import "./App.css";
-import { Editor } from "./packages/editor";
-
-
-
+import { Site } from "./Site";
 
 function App() {
   return (
     <div className="App">
-      <Editor />
-     
+      <Site />
     </div>
   );
 }

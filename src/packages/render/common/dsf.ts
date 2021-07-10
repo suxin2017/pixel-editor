@@ -1,6 +1,6 @@
-import { Component } from "../store/Component";
+import { ComponentStore } from "../store/Component";
 
-export function dsf(component: Component, cb: (com: Component) => void) {
+export function dsf(component: ComponentStore, cb: (com: ComponentStore) => void) {
   cb(component);
   component.children?.forEach((com) => {
     dsf(com, cb);
@@ -8,18 +8,18 @@ export function dsf(component: Component, cb: (com: Component) => void) {
 }
 
 export function find(
-  component: Component,
-  root: Component
-): Component | undefined;
-export function find(id: string, root: Component): Component | undefined;
-export function find(component: Component | string, root: Component) {
+  component: ComponentStore,
+  root: ComponentStore
+): ComponentStore | undefined;
+export function find(id: string, root: ComponentStore): ComponentStore | undefined;
+export function find(component: ComponentStore | string, root: ComponentStore) {
   let id: string;
   if (typeof component === "string") {
     id = component;
   } else {
     id = component.id;
   }
-  let result: Component | undefined;
+  let result: ComponentStore | undefined;
   dsf(root, (com) => {
     if (com.id === id) {
       result = com;

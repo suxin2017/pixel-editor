@@ -1,78 +1,48 @@
 import React from "react";
-import logo from "./logo.svg";
 import { observer } from "mobx-react-lite";
-import { action, autorun, makeObservable, observable } from "mobx";
-import { Component } from "../../packages/render/store/Component";
-import { AbstractHistory } from "../../packages/editor/history";
+import { Button } from "../../packages/nes/Button";
+import { AddStore, IAddStoreProps } from "./store";
+import { Setting } from "../../Site/components/Setting";
+import ButtonSetting from "./Setting";
+import {
+  IComponent,
+  IEditorComponent,
+} from "../../packages/editor/componentList";
 
-export class AddProps extends AbstractHistory<{ value: string }> {
-  constructor(initProps: {
-    initProps: { value: string };
-    name: string;
-    children?: Component[];
-  }) {
-    super(initProps);
-    makeObservable(this);
-    autorun(() => console.log(this.props.value));
-
-  }
-
-  @action
-  increment() {
-    this.props.value = "";
-    this.push();
-  }
-}
-
-let Add: React.FC<{
-  props: { value: number };
-  store: AddProps;
-}> = ({ props, children, store }) => {
+let Add: IComponent<IAddStoreProps, AddStore> = ({
+  props,
+  children,
+  store,
+}) => {
+  console.log(props);
   React.useEffect(() => {
     setTimeout(() => {
-      props.value = 123;
+      if (props.value != null) props.value = "1234";
     }, 1000);
   }, []);
 
   return (
     <div onClick={(e) => {}}>
-      <button
+      <Button
         onClick={() => {
-          if (store.parent) {
-            store.getParent<AddProps>()?.increment();
-          }
+          console.log("download app");
         }}
       >
-        chang parent value
-      </button>
-      <br />
-      {props.value}
-      <br />
-      {children}
+        {props.value}
+      </Button>
+      {props.nest.value}
     </div>
   );
 };
 Add = observer(Add);
 
-const config = {
-  store: AddProps,
-  initConfig: {
-    name: "add",
-    initProps: { value: "" },
-  },
+const componentConfig: IEditorComponent<IAddStoreProps, AddStore> = {
+  name: "button",
+  icon: <img src="https://img.icons8.com/ios/50/000000/button2.png" />,
+  store: AddStore,
+  component: Add,
+  initProps: { value: "", nest: { value: "" } },
+  settingComponent: ButtonSetting,
 };
-let Setting: React.FC<{ props: AddProps["props"] }> = ({ props }) => {
-  return (
-    <div>
-      {props.value}
-      <input
-        value={props.value}
-        onChange={(e) => {
-          props.value = e.target.value;
-        }}
-      ></input>
-    </div>
-  );
-};
-Setting = observer(Setting);
-export { Add, config, Setting };
+
+export default componentConfig;

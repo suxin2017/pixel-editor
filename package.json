@@ -2,6 +2,7 @@
   "name": "editor",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://suxin2017.github.io/pixel-editor",
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.11.4",

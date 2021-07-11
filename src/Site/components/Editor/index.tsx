@@ -4,7 +4,7 @@ import { EditorHistory } from "../../../packages/editor/history";
 import { Button } from "../../../packages/nes/Button";
 import { Col } from "../../../packages/nes/layout/Col";
 import { Row } from "../../../packages/nes/layout/Row";
-import { Render } from "../EditorRender";
+import {  Render } from "../EditorRender";
 
 let Editor: React.FC = () => {
   const editorStore = useEditorContext();
@@ -18,7 +18,7 @@ let Editor: React.FC = () => {
       </div>
       <div style={{ position: "absolute", right: 0, top: 0 }}>
         <Row gutter={[0, 12]} wrapper>
-        <Col span={12}>
+          <Col span={12}>
             <Button
               onClick={() => {
                 editorStore.deleteComponent();
@@ -52,3 +52,4 @@ let Editor: React.FC = () => {
 };
 Editor = observer(Editor);
 export { Editor };
+

@@ -1,22 +1,15 @@
 import React from "react";
-import { addComponent, cleanComponentLibs, deleteComponent } from "../render/common/componentLib";
+import { addComponent, cleanComponentLibs, deleteComponent, IComponent, IRenderComponent } from "../render/common/componentLib";
 import { ComponentStore } from "../render/store/Component";
-export type IComponent<Props = any, Store = ComponentStore<Props>> = React.FC<
-  {
-    props: Props;
-    store: Store;
-  } & Props
->;
+
 export type ISettingComponent<
   Props = any,
   Store = ComponentStore<Props>
 > = IComponent<Props, Store>;
 
-export interface IEditorComponent<Props = any, Store = ComponentStore<Props>> {
+export interface IEditorComponent<Props = any, Store = ComponentStore<Props>> extends IRenderComponent<Props,Store>{
   name: string;
   icon: React.ReactNode;
-  store: new (...args: any[]) => Store;
-  component: IComponent<Props, Store>;
   initProps: Props;
   settingComponent: IComponent<Props, Store>;
 }
@@ -29,7 +22,10 @@ export const cleanAllEditorComponent = () => {
 export const addEditorComponent = (editorComponent: IEditorComponent) => {
   console.log(componentList,'componentList')
   if (!componentList.has(editorComponent.name)) {
-    addComponent(editorComponent.name, editorComponent.component);
+    addComponent(editorComponent.name, {
+      component: editorComponent.component,
+      store:editorComponent.store
+    });
     return componentList.set(editorComponent.name, editorComponent);
   }
   return componentList;

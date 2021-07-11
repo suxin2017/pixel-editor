@@ -9,7 +9,7 @@ export interface IRenderProps {
 }
 
 let Render: React.FC<IRenderProps> = ({ component }) => {
-  const Component = getComponent(component.name);
+  const Component = getComponent(component.name)?.component;
   if (!Component) {
     console.debug("component not found");
     return null;
@@ -39,9 +39,12 @@ const createRender = (options?: ICreateRenderParams) => {
   console.log(componentLibs)
   if (options?.hoc) {
     componentLibs.forEach((Com, key) => {
-      const realCom = options.hoc?.reduce((c, hoc) => hoc(c), Com);
+      const realCom = options.hoc?.reduce((c, hoc) => hoc(c), Com.component);
       if (realCom) {
-        componentLibs.set(key, realCom);
+        componentLibs.set(key, {
+          store: Com.store,
+          component:realCom,
+        });
       } else {
         throw Error("component lose ");
       }

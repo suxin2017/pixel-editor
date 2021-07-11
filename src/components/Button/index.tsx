@@ -4,9 +4,9 @@ import { Button as NesButton } from "../../packages/nes/Button";
 import { AddStore, IAddStoreProps } from "./store";
 import ButtonSetting from "./Setting";
 import {
-  IComponent,
   IEditorComponent,
 } from "../../packages/editor/componentList";
+import { IComponent } from "../../packages/render/common/componentLib";
 
 let Button: IComponent<IAddStoreProps, AddStore> = ({
   props,
@@ -33,6 +33,11 @@ let Button: IComponent<IAddStoreProps, AddStore> = ({
         {props.value}
       </NesButton>
       <div>nest.value=&gt; {props.nest.value}</div>
+      <div>
+        <input onChange={(e) => {
+          props.value = e.target.value
+        }}></input>
+      </div>
     </div>
   );
 };

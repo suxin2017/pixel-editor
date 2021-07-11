@@ -1,5 +1,5 @@
 import React from "react";
-import { addComponent, deleteComponent } from "../render/common/componentLib";
+import { addComponent, cleanComponentLibs, deleteComponent } from "../render/common/componentLib";
 import { ComponentStore } from "../render/store/Component";
 export type IComponent<Props = any, Store = ComponentStore<Props>> = React.FC<
   {
@@ -22,7 +22,12 @@ export interface IEditorComponent<Props = any, Store = ComponentStore<Props>> {
 }
 
 export const componentList = new Map<string, IEditorComponent>();
+export const cleanAllEditorComponent = () => {
+  componentList.clear();
+  cleanComponentLibs();
+}
 export const addEditorComponent = (editorComponent: IEditorComponent) => {
+  console.log(componentList,'componentList')
   if (!componentList.has(editorComponent.name)) {
     addComponent(editorComponent.name, editorComponent.component);
     return componentList.set(editorComponent.name, editorComponent);
@@ -40,3 +45,6 @@ export const getEditorComponent = <T extends IEditorComponent>(
 ) => {
   return componentList.get(name) as T;
 };
+export const getAllComponent = () => {
+  return Array.from(componentList.values());
+}

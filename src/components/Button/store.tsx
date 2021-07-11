@@ -4,6 +4,7 @@ import { ComponentStore } from "../../packages/render/store/Component";
 export interface IAddStoreProps {
   value: string;
   nest: { value: string };
+  style?: React.CSSProperties
 }
 
 export class AddStore extends ComponentStore<IAddStoreProps> {

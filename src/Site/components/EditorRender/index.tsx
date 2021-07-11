@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
-import Add from "../../../components/Add";
+import Add from "../../../components/Button";
 import Page from "../../../components/Page";
-import { addEditorComponent } from "../../../packages/editor/componentList";
+import { addEditorComponent, cleanAllEditorComponent } from "../../../packages/editor/componentList";
 import {
   editorStore,
   useEditorContext,
@@ -10,15 +10,15 @@ import { createRender } from "../../../packages/render";
 import { IComponentProps } from "../../../packages/render/interface/IComponentProps";
 console.log("hot update render");
 
-/**
- * You need to refresh the browser if you edit this file, because EditorStores are global
- */
 export const Render = createRender({
   beforeHoc() {
+    cleanAllEditorComponent();
     addEditorComponent(Page);
     addEditorComponent(Add);
   },
   afterHoc() {
+    // fix hot update bug
+    editorStore.restInitState()
     const rootNode = editorStore.addComponentToRoot(Page);
     editorStore.activeComponent = rootNode;
   },

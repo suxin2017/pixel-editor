@@ -8,7 +8,12 @@ export let point: number = -1;
 let dispatching = false;
 
 class HistoryUtil {
-  init() {}
+  init() {
+    HistoryRef.length = 0;
+    HistoryAssign.length = 0;
+    point = -1;
+    dispatching = false;
+  }
   push(propsSnapshot: ComponentStore["props"]) {
     if (!dispatching) {
       const preSnapshot = HistoryAssign[point - 1];
@@ -61,4 +66,4 @@ class HistoryUtil {
   }
 }
 
-export const History = new HistoryUtil();
+export const EditorHistory = new HistoryUtil();

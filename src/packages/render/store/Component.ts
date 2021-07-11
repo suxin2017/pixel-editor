@@ -1,6 +1,10 @@
 import { makeObservable, observable } from "mobx";
 import { v4 as uuidv4 } from "uuid";
 type AnyObj = { [key: string]: any };
+export enum ComponentType {
+  CONTAINER = 'container',
+  ATOM = 'atom'
+}
 export class ComponentStore<Props = AnyObj> {
   id: string;
 
@@ -8,6 +12,8 @@ export class ComponentStore<Props = AnyObj> {
   props: { $id: string } & Props;
 
   name: string;
+
+  type: ComponentType = ComponentType.ATOM;
 
   @observable
   parent?: ComponentStore;
@@ -17,27 +23,27 @@ export class ComponentStore<Props = AnyObj> {
 
   historyStack?: ComponentStore[];
 
-  constructor({
-    initProps,
-    name,
-    children,
-    id,
-  }: {
+  constructor(options: {
     initProps: Props;
     name: string;
     children?: ComponentStore[];
     id?: string;
+    type?: ComponentType;
   }) {
     makeObservable(this);
-    this.name = name;
-    this.children = children;
+    this.name = options.name;
+    this.children = options.children;
     if (this.children) {
       this.children.forEach((child) => {
         child.parent = this;
       });
     }
-    this.id = id ?? uuidv4();
-    this.props = { ...initProps, $id: this.id };
+    this.id = options.id ?? uuidv4();
+    this.props = { ...options.initProps, $id: this.id };
+    console.log(options)
+    if (options.type) {
+      this.type = options.type;
+    }
   }
 
   getRootStore(): ComponentStore {

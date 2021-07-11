@@ -1,22 +1,21 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { AddStore } from "./store";
+import { AddStore as ContainerStore } from "./store";
 import ButtonSetting from "./Setting";
 import { IEditorComponent } from "../../packages/editor/componentList";
 
-let Page: React.FC<{
+let Container: React.FC<{
   props: { value: number };
-  store: AddStore;
+  store: ContainerStore;
 }> = ({ props, children, store }) => {
-  console.log(children);
   return (
-    <div onClick={(e) => {}}>
-      pages
+    <div onClick={(e) => {}} style={{ padding: 24 }}>
+      container
       {children}
     </div>
   );
 };
-Page = observer(Page);
+Container = observer(Container);
 
 const componentConfig: IEditorComponent = {
   name: "page",
@@ -26,9 +25,9 @@ const componentConfig: IEditorComponent = {
       alt="icon"
     />
   ),
-  
-  store: AddStore,
-  component: Page,
+
+  store: ContainerStore,
+  component: Container,
   initProps: { value: "" },
   settingComponent: ButtonSetting,
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { Button } from "../../packages/nes/Button";
+import { Button as NesButton } from "../../packages/nes/Button";
 import { AddStore, IAddStoreProps } from "./store";
 import ButtonSetting from "./Setting";
 import {
@@ -8,7 +8,7 @@ import {
   IEditorComponent,
 } from "../../packages/editor/componentList";
 
-let Add: IComponent<IAddStoreProps, AddStore> = ({
+let Button: IComponent<IAddStoreProps, AddStore> = ({
   props,
   children,
   store,
@@ -16,32 +16,42 @@ let Add: IComponent<IAddStoreProps, AddStore> = ({
   console.log(props);
   React.useEffect(() => {
     setTimeout(() => {
+      // async set
       if (props.value != null) props.value = "1234";
     }, 1000);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div onClick={(e) => {}}>
-      <Button
+      <NesButton
+        style={{ color: "red",...props.style }}
         onClick={() => {
           console.log("download app");
         }}
       >
         {props.value}
-      </Button>
-      {props.nest.value}
+      </NesButton>
+      <div>nest.value=&gt; {props.nest.value}</div>
     </div>
   );
 };
-Add = observer(Add);
+Button = observer(Button);
 
 const componentConfig: IEditorComponent<IAddStoreProps, AddStore> = {
   name: "button",
-  icon: <img src="https://img.icons8.com/ios/50/000000/button2.png" alt="ignore"/>,
+  icon: (
+    <img src="https://img.icons8.com/ios/50/000000/button2.png" alt="ignore" />
+  ),
   store: AddStore,
-  component: Add,
-  initProps: { value: "", nest: { value: "" } },
+  component: Button,
+  initProps: {
+    value: "",
+    nest: { value: "" },
+    style: {
+      background: "#fff",
+    },
+  },
   settingComponent: ButtonSetting,
 };
 

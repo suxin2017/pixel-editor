@@ -9,7 +9,7 @@ let Setting: React.FC<ISettingProps> = (props) => {
   const ComponentSetting = editorStore.getActiveSetting();
   console.log(ComponentSetting)
   return (
-    <div className="nes-container with-title is-centered">
+    <div className="nes-container with-title">
       setting 
       {editorStore.activeComponent && ComponentSetting && (
         <ComponentSetting

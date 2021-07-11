@@ -8,8 +8,13 @@ const debug = (message: string, ...otherParams: any[]) => {
     ...otherParams
   );
 };
+
 export const componentLibs = new Map<string, React.FC<IComponentProps>>();
 
+export const cleanComponentLibs = () => {
+    debug("clear all components %s");
+  return componentLibs.clear();
+};
 export const addComponent = (name: string, component: React.FC<any>) => {
   if (!componentLibs.has(name)) {
     debug("add component %s", name);

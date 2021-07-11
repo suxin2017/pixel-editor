@@ -52,6 +52,7 @@ export const Row: React.FC<IRowProps> = (props) => {
       className={classNames(prefix("row"))}
       style={{
         ...gutterStyle,
+        ...domProps.style,
         flexWrap: props.wrapper ? "wrap" : "nowrap",
         justifyContent: props.justify,
       }}

@@ -11,9 +11,9 @@ export interface IRenderProps {
 let Render: React.FC<IRenderProps> = ({ component }) => {
   const Component = getComponent(component.name);
   if (!Component) {
-    throw Error("component not found");
+    console.debug("component not found");
+    return null;
   }
-  console.log(component);
   return (
     <Component props={component.props} store={component}>
       {component.children?.map((child) => {
@@ -32,10 +32,11 @@ export interface ICreateRenderParams {
   componentJson?: string | ComponentStore;
 }
 const createRender = (options?: ICreateRenderParams) => {
-  console.log("运行了");
+
   if (options?.beforeHoc) {
     options.beforeHoc();
   }
+  console.log(componentLibs)
   if (options?.hoc) {
     componentLibs.forEach((Com, key) => {
       const realCom = options.hoc?.reduce((c, hoc) => hoc(c), Com);

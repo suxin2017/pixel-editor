@@ -1,10 +1,10 @@
 import { action, makeObservable, observable } from "mobx";
 import { find } from "../render/common/dsf";
-import { ComponentStore } from "../render/store/Component";
+import { ComponentStore, ComponentType } from "../render/store/Component";
 import React from "react";
 import { getEditorComponent, IEditorComponent } from "./componentList";
 import { deepObserve, IDisposer } from "mobx-utils";
-import { History } from "./history";
+import { EditorHistory } from "./history";
 import { throttle } from "lodash";
 
 const disposerMap = new Map<string, IDisposer>();
@@ -28,12 +28,16 @@ export class EditorStore {
       initProps: component.initProps,
     });
 
-    History.push(newStore.props);
+    EditorHistory.push(newStore.props);
     const disposer = deepObserve(
       newStore.props,
-      throttle((change, path, root) => {
-        History.push(root);
-      }, 1000,{ 'trailing': false })
+      throttle(
+        (change, path, root) => {
+          EditorHistory.push(root);
+        },
+        1000,
+        { trailing: false }
+      )
     );
     disposerMap.set(newStore.id, disposer);
     if (!parent) {
@@ -54,9 +58,30 @@ export class EditorStore {
   }
 
   @action
-  deleteComponent(param: string) {
+  addComponentToNearParentComponent(component: IEditorComponent) {
+    if (!this.activeComponent) {
+      return this.addComponentToRoot(component);
+    } else {
+      let node: ComponentStore | undefined = this.activeComponent;
+      console.log(node.type)
+      while (node && node.type !== ComponentType.CONTAINER) {
+        node = node.parent;
+      }
+      if (!node) {
+        throw new Error("The nearest parent container component was not found");
+      }
+      return this.addComponent(node, component);
+    }
+  }
+
+  @action
+  deleteComponent(id?: string) {
     if (this.component) {
-      const targetCom = find(param, this.component);
+      let targetCom = this.activeComponent;
+      if (id) {
+        targetCom= find(id, this.component);
+      }
+      // TODO need delete the root node ?
       const targetIndex = targetCom?.parent?.children?.indexOf(targetCom);
 
       if (targetCom != null && targetIndex != null) {
@@ -66,7 +91,10 @@ export class EditorStore {
           disposer();
         }
         disposerMap.delete(targetCom.id);
+      } else {
+        console.warn('no component delete');
       }
+
     }
   }
 
@@ -79,6 +107,11 @@ export class EditorStore {
     if (this.activeComponent) {
       return getEditorComponent(this.activeComponent.name).settingComponent;
     }
+  }
+
+  restInitState() {
+    this.component = undefined;
+    EditorHistory.init()
   }
 }
 

@@ -1,5 +1,5 @@
 import { action, makeObservable, observable } from "mobx";
-import { find } from "../render/common/dsf";
+import { dsf, find } from "../render/common/dsf";
 import { ComponentStore, ComponentType } from "../render/store/Component";
 import React from "react";
 import { getEditorComponent, IEditorComponent } from "./componentList";
@@ -63,7 +63,6 @@ export class EditorStore {
       return this.addComponentToRoot(component);
     } else {
       let node: ComponentStore | undefined = this.activeComponent;
-      console.log(node.type)
       while (node && node.type !== ComponentType.CONTAINER) {
         node = node.parent;
       }
@@ -79,7 +78,7 @@ export class EditorStore {
     if (this.component) {
       let targetCom = this.activeComponent;
       if (id) {
-        targetCom= find(id, this.component);
+        targetCom = find(id, this.component);
       }
       // TODO need delete the root node ?
       const targetIndex = targetCom?.parent?.children?.indexOf(targetCom);
@@ -92,9 +91,8 @@ export class EditorStore {
         }
         disposerMap.delete(targetCom.id);
       } else {
-        console.warn('no component delete');
+        console.warn("no component delete");
       }
-
     }
   }
 
@@ -103,15 +101,35 @@ export class EditorStore {
   }
 
   getActiveSetting() {
-    console.log(this.activeComponent);
     if (this.activeComponent) {
-      return getEditorComponent(this.activeComponent.name).settingComponent;
+      return getEditorComponent(this.activeComponent.name)?.settingComponent;
+    }
+  }
+
+  findComponentById(id: string) {
+    let result: ComponentStore | undefined;
+    if (this.component) {
+      dsf(this.component, (com) => {
+        if (id === com.id) {
+          result = com;
+        }
+      });
+    }
+    return result;
+  }
+
+  @action
+  moveComponent(id: string, from: number, to: number) {
+    const component = this.findComponentById(id);
+    if (component) {
+      component.parent?.children?.splice(to, 0, component);
+      component?.parent?.children?.splice(from, 1);
     }
   }
 
   restInitState() {
     this.component = undefined;
-    EditorHistory.init()
+    EditorHistory.init();
   }
 }
 

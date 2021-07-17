@@ -1,7 +1,7 @@
 import React from "react";
-import { AddStore } from "./store";
+import { ContainerStore } from "./store";
 
-const ButtonSetting: React.FC<{ props: AddStore["props"] }> = ({ props }) => {
+const ButtonSetting: React.FC<{ props: ContainerStore["props"] }> = ({ props }) => {
   console.log(props);
   return <div>
     place select a component

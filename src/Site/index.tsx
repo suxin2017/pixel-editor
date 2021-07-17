@@ -13,18 +13,17 @@ interface ISiteProps {}
 export const Site: React.FC<ISiteProps> = (props) => {
   return (
     <EditorContextProvider value={editorStore}>
-      <Row gutter={24} style={{marginTop:64}}>
-        <Col span={2}>
+      <Row gutter={24} style={{ marginTop: 64,padding:'24px' }}>
+        <Col span={1}>
           <ComponentList />
         </Col>
-        <Col flex={1} >
+        <Col flex={1}>
           <Editor />
         </Col>
         <Col span={3}>
           <Setting />
         </Col>
       </Row>
-   
     </EditorContextProvider>
   );
 };

@@ -20,7 +20,6 @@ export const cleanAllEditorComponent = () => {
   cleanComponentLibs();
 }
 export const addEditorComponent = (editorComponent: IEditorComponent) => {
-  console.log(componentList,'componentList')
   if (!componentList.has(editorComponent.name)) {
     addComponent(editorComponent.name, {
       component: editorComponent.component,
@@ -41,6 +40,8 @@ export const getEditorComponent = <T extends IEditorComponent>(
 ) => {
   return componentList.get(name) as T;
 };
+
 export const getAllComponent = () => {
+  console.log(componentList.values())
   return Array.from(componentList.values());
 }

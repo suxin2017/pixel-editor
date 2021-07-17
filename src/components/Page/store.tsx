@@ -1,17 +1,14 @@
-import {  makeObservable } from "mobx";
-import { ComponentStore, ComponentType } from "../../packages/render/store/Component";
+import { makeObservable } from "mobx";
+import {
+  ComponentStore,
+  ComponentType,
+} from "../../packages/render/store/Component";
 
-export class AddStore extends ComponentStore<{ value: string }> {
-  constructor(initProps: {
-    initProps: { value: string };
-    name?: string;
-    children?: ComponentStore[];
-  }) {
-
+export class ContainerStore extends ComponentStore<{ value: string }> {
+  constructor(initProps: { initProps: { value: string }; name: string }) {
     super({
       ...initProps,
-      name: "page",
-      type: ComponentType.CONTAINER
+      type:ComponentType.CONTAINER
     });
     makeObservable(this);
   }

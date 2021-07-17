@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/pixel-editor/static/css/main.45cd9594.chunk.css",
+    "main.js": "/pixel-editor/static/js/main.c01cfcfa.chunk.js",
+    "main.js.map": "/pixel-editor/static/js/main.c01cfcfa.chunk.js.map",
+    "runtime-main.js": "/pixel-editor/static/js/runtime-main.fe6b1345.js",
+    "runtime-main.js.map": "/pixel-editor/static/js/runtime-main.fe6b1345.js.map",
+    "static/js/2.b161e6a0.chunk.js": "/pixel-editor/static/js/2.b161e6a0.chunk.js",
+    "static/js/2.b161e6a0.chunk.js.map": "/pixel-editor/static/js/2.b161e6a0.chunk.js.map",
+    "static/js/3.7b5f643c.chunk.js": "/pixel-editor/static/js/3.7b5f643c.chunk.js",
+    "static/js/3.7b5f643c.chunk.js.map": "/pixel-editor/static/js/3.7b5f643c.chunk.js.map",
+    "index.html": "/pixel-editor/index.html",
+    "static/css/main.45cd9594.chunk.css.map": "/pixel-editor/static/css/main.45cd9594.chunk.css.map",
+    "static/js/2.b161e6a0.chunk.js.LICENSE.txt": "/pixel-editor/static/js/2.b161e6a0.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/pixel-editor/static/media/zpix.156e19ed.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fe6b1345.js",
+    "static/js/2.b161e6a0.chunk.js",
+    "static/css/main.45cd9594.chunk.css",
+    "static/js/main.c01cfcfa.chunk.js"
+  ]
+}

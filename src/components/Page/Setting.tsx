@@ -4,7 +4,7 @@ import { ContainerStore } from "./store";
 const ButtonSetting: React.FC<{ props: ContainerStore["props"] }> = ({ props }) => {
   console.log(props);
   return <div>
-    place select a component
+    please select a component
   </div>;
 };
 

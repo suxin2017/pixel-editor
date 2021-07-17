@@ -127,6 +127,14 @@ export class EditorStore {
     }
   }
 
+  @action
+  setActiveComponentById(id: string) {
+    const component = this.findComponentById(id);
+    if (component) {
+      this.activeComponent = component;
+    }
+  }
+
   restInitState() {
     this.component = undefined;
     EditorHistory.init();

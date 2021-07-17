@@ -12,7 +12,7 @@ export function useDrag(props: IUseDragOpt) {
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     e.stopPropagation();
     const currNode = e.currentTarget;
-    const id = moveEle.dataset["id"];
+    const id = currNode.dataset["id"];
     if (id) {
       editorContext.setActiveComponentById(id);
     }

@@ -1,5 +1,5 @@
 import { throttle } from "lodash";
-import { useEditorContext } from "../../../../packages/editor/EditorStore";
+import { useEditorContext } from "editor";
 
 interface IUseDragOpt {
   onChange: (cur: number, tar: number) => void;

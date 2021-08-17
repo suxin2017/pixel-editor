@@ -1,7 +1,7 @@
 import React from "react";
 import {
   getAllComponent, getEditorComponent,
-} from "../../../../../editor/src/componentList";
+} from "editor";
 import { useEditorContext } from "editor";
 import { Col } from "../../../packages/nes/layout/Col";
 import { Row } from "../../../packages/nes/layout/Row";

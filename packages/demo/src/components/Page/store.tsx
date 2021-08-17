@@ -2,7 +2,7 @@ import { makeObservable } from "mobx";
 import {
   ComponentStore,
   ComponentType,
-} from "../../packages/render/store/Component";
+} from "render";
 
 export class ContainerStore extends ComponentStore<{ value: string }> {
   constructor(initProps: { initProps: { value: string }; name: string }) {
@@ -10,6 +10,6 @@ export class ContainerStore extends ComponentStore<{ value: string }> {
       ...initProps,
       type:ComponentType.CONTAINER
     });
-    makeObservable(this);
+    // makeObservable(this);
   }
 }

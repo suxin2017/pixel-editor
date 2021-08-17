@@ -1,5 +1,5 @@
 import { action, makeObservable } from "mobx";
-import { ComponentStore } from "../../packages/render/store/Component";
+import { ComponentStore } from "render";
 
 export interface IAddStoreProps {
   value: string;

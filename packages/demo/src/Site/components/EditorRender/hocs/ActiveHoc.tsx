@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
-import { useEditorContext } from "../../../../packages/editor/EditorStore";
-import { IComponentProps } from "../../../../packages/render/interface/IComponentProps";
+import { useEditorContext } from "editor";
+import { IComponentProps } from "render";
 
 export function ActiveHoc(Com: React.FC<IComponentProps>) {
   const ActiveWrapper: React.FC<IComponentProps> = (props) => {

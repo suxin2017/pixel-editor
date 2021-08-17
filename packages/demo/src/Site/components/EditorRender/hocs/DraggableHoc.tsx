@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { IComponentProps } from "../../../../packages/render/interface/IComponentProps";
+import { IComponentProps } from "render";
 import { useDrag } from "./useDragHook";
 
 export function DraggableHoc(Com: React.FC<IComponentProps>) {

@@ -3,7 +3,7 @@ import { Editor } from "./components/Editor";
 import {
   EditorContextProvider,
   editorStore,
-} from "../packages/editor/EditorStore";
+} from "editor";
 import { Col } from "../packages/nes/layout/Col";
 import { Row } from "../packages/nes/layout/Row";
 import { ComponentList } from "./components/ComponentList";

@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { useEditorContext } from "../../../packages/editor/EditorStore";
+import { useEditorContext } from "editor";
 
 interface ISettingProps {}
 

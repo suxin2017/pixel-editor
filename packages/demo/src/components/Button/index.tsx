@@ -1,4 +1,3 @@
-import React from "react";
 import { observer } from "mobx-react-lite";
 import { Button as NesButton } from "../../packages/nes/Button";
 import { AddStore, IAddStoreProps } from "./store";

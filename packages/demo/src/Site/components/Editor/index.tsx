@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
-import { useEditorContext } from "../../../packages/editor/EditorStore";
-import { EditorHistory } from "../../../packages/editor/history";
+import { useEditorContext } from "editor";
+import { EditorHistory } from "editor";
 import { Button } from "../../../packages/nes/Button";
 import { Col } from "../../../packages/nes/layout/Col";
 import { Row } from "../../../packages/nes/layout/Row";

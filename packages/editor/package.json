@@ -1,0 +1,24 @@
+{
+  "name": "editor",
+  "version": "1.0.0",
+  "author": "suxin2017",
+  "license": "MIT",
+  "main": "./lib/index",
+  "module": "./es/index",
+  "scripts": {
+    "build":"father build"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "mobx": "^6.3.2",
+    "render": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.171",
+    "@types/uuid": "^8.3.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  }
+}

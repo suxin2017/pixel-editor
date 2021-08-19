@@ -24,7 +24,6 @@ export class EditorStore {
       initProps: component.initProps,
     });
 
-    EditorHistory.push(newStore.props);
     if (!parent) {
       this.component = newStore;
     } else {
@@ -34,6 +33,10 @@ export class EditorStore {
       }
       parent.children?.push(newStore);
     }
+    if (this.component) {
+      EditorHistory.push(this.component);
+    }
+
     return newStore;
   }
 

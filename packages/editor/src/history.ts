@@ -1,9 +1,10 @@
-import {ComponentStore} from "render";
+import { ComponentStore } from "render";
 import { cloneDeep, isEqual, keys } from "lodash";
 import { toJS } from "mobx";
-
-export const HistoryRef: ComponentStore["props"][] = [];
-export const HistoryAssign: ComponentStore["props"][] = [];
+import { EditorStore } from "./EditorStore";
+export type Snapshot = { [key: string]: any };
+export const HistoryRef: Snapshot[] = [];
+export const HistoryAssign: Snapshot[] = [];
 export let point: number = -1;
 let dispatching = false;
 
@@ -14,18 +15,17 @@ class HistoryUtil {
     point = -1;
     dispatching = false;
   }
-  push(propsSnapshot: ComponentStore["props"]) {
+  push(snapshot: Snapshot) {
     if (!dispatching) {
       const preSnapshot = HistoryAssign[point - 1];
-      if (isEqual(toJS(propsSnapshot), preSnapshot)) {
+      if (isEqual(toJS(snapshot), preSnapshot)) {
         return;
       }
       point++;
       HistoryRef.length = point + 1;
       HistoryAssign.length = point + 1;
-
-      HistoryRef[point] = propsSnapshot;
-      HistoryAssign[point] = cloneDeep(propsSnapshot);
+      HistoryRef[point] = snapshot;
+      HistoryAssign[point] = cloneDeep(snapshot);
       console.log("push hsitory =>", HistoryAssign, point);
     }
   }

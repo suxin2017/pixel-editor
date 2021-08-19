@@ -6,7 +6,8 @@
   "main": "./lib/index",
   "module": "./es/index",
   "scripts": {
-    "build":"father build"
+    "build":"father build",
+    "dev":"father build  --watch"
   },
   "dependencies": {
     "lodash": "^4.17.21",

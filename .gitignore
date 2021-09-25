@@ -25,3 +25,5 @@ yarn-error.log*
 es
 lib
 node_modules
+
+yarn.lock

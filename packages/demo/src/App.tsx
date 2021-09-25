@@ -1,11 +1,15 @@
-import "./App.css";
+import { Button, ConfigProvider } from 'antd';
+import './App.less';
 import { Site } from "./Site";
 
 function App() {
   return (
-    <div className="App">
-      <Site />
-    </div>
+    <ConfigProvider componentSize={'middle'}>
+      <div className="App">
+        <Button >123</Button>
+        <Site />
+      </div>
+    </ConfigProvider>
   );
 }
 

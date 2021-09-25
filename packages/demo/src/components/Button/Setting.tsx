@@ -3,6 +3,7 @@ import { AddStore, IAddStoreProps } from "./store";
 import { ISettingComponent } from "../../../../editor/src/componentList";
 import { Row } from "../../packages/nes/layout/Row";
 import { Col } from "../../packages/nes/layout/Col";
+import { Input } from "antd";
 
 let ButtonSetting: ISettingComponent<IAddStoreProps, AddStore> = ({
   props,
@@ -12,12 +13,12 @@ let ButtonSetting: ISettingComponent<IAddStoreProps, AddStore> = ({
     <Row gutter={[0, 8]} wrapper>
       <Col span={12}>
         <span>内容：</span>
-        <input
+        <Input
           value={props.value}
           onChange={(e) => {
             props.value = e.target.value;
           }}
-        ></input>
+        ></Input>
       </Col>
       <Col span={12}>
         <span>背景颜色 :</span>

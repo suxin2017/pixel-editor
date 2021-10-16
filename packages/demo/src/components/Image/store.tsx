@@ -8,8 +8,5 @@ export interface IImageStoreProps {
 }
 
 export class ImageStore extends ComponentStore<IImageStoreProps> {
-  constructor(initProps: { initProps: IImageStoreProps; name: string }) {
-    super(initProps);
-    makeObservable(this);
-  }
+ 
 }

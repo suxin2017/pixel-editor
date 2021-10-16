@@ -1,9 +1,5 @@
-import React from "react";
-
-interface IOtherProps {}
-
-const Other: React.FC<IOtherProps> = (props) => {
-  return <div>Com</div>;
+const Other = (a: number, b: number) => {
+  console.log(a + b);
 };
 
 export default Other;

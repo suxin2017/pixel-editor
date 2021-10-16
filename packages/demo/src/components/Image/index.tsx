@@ -1,8 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { ImageStore, IImageStoreProps } from "./store";
 import ButtonSetting from "./Setting";
-import { IEditorComponent } from "editor";
-import { IComponent } from "render";
+import { IEditorComponent,IComponent } from "store";
 
 let Button: IComponent<IImageStoreProps, ImageStore> = ({
   props,
@@ -11,7 +10,10 @@ let Button: IComponent<IImageStoreProps, ImageStore> = ({
 }) => {
   return (
     <div onClick={(e) => {}}>
-      <img width="100%" src={props.src} alt="img" />
+      <img width={props.width}
+        height={props.height}
+        src={props.src}
+        alt="img" />
     </div>
   );
 };
@@ -25,6 +27,8 @@ const componentConfig: IEditorComponent<IImageStoreProps, ImageStore> = {
   store: ImageStore,
   component: Button,
   initProps: {
+    width: '100%',
+    height: '100%',
     src: "https://img.88icon.com/download/jpg/20200819/2210309e15cb8b01fe45b3739e015cf7_512_398.jpg!88con",
   },
   settingComponent: ButtonSetting,

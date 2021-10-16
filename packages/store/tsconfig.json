@@ -6,23 +6,18 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "declaration":true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "experimentalDecorators":true,
     "useDefineForClassFields":true,
+    "experimentalDecorators":true,
+    "skipLibCheck": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "jsx": "react-jsx",
+    "sourceMap": true
   },
-  "include": [
-    "./src"
-  ]
 }

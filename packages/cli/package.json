@@ -11,11 +11,15 @@
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@rollup/plugin-typescript": "^8.2.5",
     "commander": "^8.2.0",
+    "father-build": "^1.20.1",
     "gulp": "^4.0.2",
     "inquirer": "^8.1.5",
     "postcss": "^8.3.7",
     "rollup-plugin-postcss": "^4.0.1"
   },
   "description": "像素cli",
-  "bin": "./bin/index.js"
+  "bin": "./bin/index.js",
+  "devDependencies": {
+    "@types/react-dom": "^17.0.9"
+  }
 }

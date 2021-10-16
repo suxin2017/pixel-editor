@@ -1,15 +1,9 @@
-import React, { lazy } from "react";
-import styles from "./index.module.less";
 import "./index.less";
-const Other = lazy(async () => import("./Button"));
+import React from "react";
+import ReactDom from "react-dom";
 
 const Button = () => {
-  return (
-    <div className={styles.root}>
-      button
-      <Other />
-    </div>
-  );
+  return <div>hello</div>;
 };
 
-export default Button;
+ReactDom.render(<Button />, document.body);

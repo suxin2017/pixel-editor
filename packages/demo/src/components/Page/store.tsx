@@ -1,8 +1,7 @@
-import { makeObservable } from "mobx";
 import {
   ComponentStore,
   ComponentType,
-} from "render";
+} from "store";
 
 export class ContainerStore extends ComponentStore<{ value: string }> {
   constructor(initProps: { initProps: { value: string }; name: string }) {

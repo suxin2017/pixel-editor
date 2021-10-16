@@ -1,4 +1,4 @@
-import { ComponentStore } from "render";
+import { ComponentStore } from "store";
 
 export interface IImageStoreProps {
   src: string | undefined;

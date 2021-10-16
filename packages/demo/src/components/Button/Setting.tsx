@@ -1,28 +1,24 @@
 import { observer } from "mobx-react-lite";
 import { AddStore, IAddStoreProps } from "./store";
-import { ISettingComponent } from "../../../../editor/src/componentList";
-import { Row } from "../../packages/nes/layout/Row";
-import { Col } from "../../packages/nes/layout/Col";
-import { Input } from "antd";
+import { ISettingComponent } from "store";
+import { Col, Input, Row, Form } from "antd";
 
 let ButtonSetting: ISettingComponent<IAddStoreProps, AddStore> = ({
   props,
   store,
 }) => {
   return (
-    <Row gutter={[0, 8]} wrapper>
-      <Col span={12}>
-        <span>内容：</span>
+    <Form>
+      <Form.Item label="内容">
         <Input
           value={props.value}
           onChange={(e) => {
             props.value = e.target.value;
           }}
         ></Input>
-      </Col>
-      <Col span={12}>
-        <span>背景颜色 :</span>
-        <input
+      </Form.Item>
+      <Form.Item label="背景颜色">
+        <Input
           type="color"
           value={props.style?.background}
           onChange={(e) => {
@@ -31,9 +27,9 @@ let ButtonSetting: ISettingComponent<IAddStoreProps, AddStore> = ({
               props.style.background = e.target.value;
             }
           }}
-        ></input>
-      </Col>
-    </Row>
+        ></Input>
+      </Form.Item>
+    </Form>
   );
 };
 

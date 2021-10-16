@@ -1,14 +1,22 @@
 import { Button, ConfigProvider } from 'antd';
 import './App.less';
-import { Site } from "./Site";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { RouterSwitch } from './routes';
+import PageLayout from './layout';
 
 function App() {
   return (
     <ConfigProvider componentSize={'middle'}>
-      <div className="App">
-        <Button >123</Button>
-        <Site />
-      </div>
+      <Router>
+        <div className="App">
+          <PageLayout/>
+        </div>
+      </Router>
     </ConfigProvider>
   );
 }

@@ -1,15 +1,17 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { componentLibs, getComponent } from "./common/componentLib";
-import { IComponentProps } from "./interface/IComponentProps";
-import { ComponentStore } from "./store/Component";
+import { ComponentStore, componentLib } from 'store'
+export interface IComponentProps {
+  props: ComponentStore["props"];
+  store: ComponentStore;
+}
 
 export interface IRenderProps {
   component: ComponentStore;
 }
 
 let Render: React.FC<IRenderProps> = ({ component }) => {
-  const Component = getComponent(component.name)?.component;
+  const Component = componentLib.getComponent(component.name)?.component;
   if (!Component) {
     console.debug("component not found");
     return null;
@@ -32,18 +34,16 @@ export interface ICreateRenderParams {
   componentJson?: string | ComponentStore;
 }
 const createRender = (options?: ICreateRenderParams) => {
-
   if (options?.beforeHoc) {
     options.beforeHoc();
   }
-  console.log(componentLibs)
   if (options?.hoc) {
-    componentLibs.forEach((Com, key) => {
+    componentLib.componentLibs.forEach((Com, key) => {
       const realCom = options.hoc?.reduce((c, hoc) => hoc(c), Com.component);
       if (realCom) {
-        componentLibs.set(key, {
+        componentLib.componentLibs.set(key, {
           store: Com.store,
-          component:realCom,
+          component: realCom,
         });
       } else {
         throw Error("component lose ");
@@ -56,7 +56,4 @@ const createRender = (options?: ICreateRenderParams) => {
   return Render;
 };
 export { createRender };
-  
-export * from './common';
-export * from './interface';
-export * from './store';
+

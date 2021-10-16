@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { ContainerStore } from "./store";
 import ButtonSetting from "./Setting";
-import { IEditorComponent } from "editor";
+import { IEditorComponent } from "store";
 
 let Container: React.FC<{
   props: { value: number };

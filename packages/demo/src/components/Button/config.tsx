@@ -1,4 +1,4 @@
-import { IEditorComponent } from "editor";
+import { IEditorComponent } from "store";
 import ButtonSetting from "./Setting";
 import { IAddStoreProps, AddStore } from "./store";
 import { Button } from './view';

@@ -1,0 +1,50 @@
+yarn run v1.22.11
+$ craco start
+Starting the development server...
+
+Failed to compile.
+
+Module not found: Error: Can't resolve 'remote/App' in '/Users/xw/self/pixel-editor/demo/website/src/pages/pages'
+assets by path static/ 11.6 MiB
+  asset static/js/vendors-node_modules_antd_es_card_index_js-node_modules_antd_es_config-provider_index_js-node-d88d02.chunk.js 4.69 MiB [emitted] (id hint: vendors) 1 related asset
+  asset static/media/zpix.156e19ed736e35315b89.ttf 4.46 MiB [emitted] [immutable] [from: src/fonts/zpix.ttf]
+  asset static/js/src_bootstrap_tsx.chunk.js 2.09 MiB [emitted] 1 related asset
+  asset static/js/bundle.js 351 KiB [emitted] (name: main) 1 related asset
+  asset static/js/node_modules_web-vitals_dist_web-vitals_js.chunk.js 6.51 KiB [emitted] 1 related asset
+asset index.html 1.83 KiB [emitted]
+asset asset-manifest.json 1.3 KiB [emitted]
+cached modules 7.89 MiB (javascript) 4.46 MiB (asset) [cached] 1200 modules
+runtime modules 31.5 KiB 16 modules
+
+ERROR in ./src/pages/pages/index.tsx 6:53-73
+Module not found: Error: Can't resolve 'remote/App' in '/Users/xw/self/pixel-editor/demo/website/src/pages/pages'
+resolve 'remote/App' in '/Users/xw/self/pixel-editor/demo/website/src/pages/pages'
+  Parsed request is a module
+  using description file: /Users/xw/self/pixel-editor/demo/website/package.json (relative path: ./src/pages/pages)
+    Field 'browser' doesn't contain a valid alias configuration
+    resolve as module
+      /Users/xw/self/pixel-editor/demo/website/src/pages/pages/node_modules doesn't exist or is not a directory
+      /Users/xw/self/pixel-editor/demo/website/src/pages/node_modules doesn't exist or is not a directory
+      /Users/xw/self/pixel-editor/demo/website/src/node_modules doesn't exist or is not a directory
+      looking for modules in /Users/xw/self/pixel-editor/demo/website/node_modules
+        /Users/xw/self/pixel-editor/demo/website/node_modules/remote doesn't exist
+      /Users/xw/self/pixel-editor/demo/node_modules doesn't exist or is not a directory
+      looking for modules in /Users/xw/self/pixel-editor/node_modules
+        /Users/xw/self/pixel-editor/node_modules/remote doesn't exist
+      /Users/xw/self/node_modules doesn't exist or is not a directory
+      looking for modules in /Users/xw/node_modules
+        /Users/xw/node_modules/remote doesn't exist
+      /Users/node_modules doesn't exist or is not a directory
+      /node_modules doesn't exist or is not a directory
+      looking for modules in /Users/xw/self/pixel-editor/demo/website/node_modules
+        /Users/xw/self/pixel-editor/demo/website/node_modules/remote doesn't exist
+ @ ./src/routes.tsx 6:0-34 11:34-39
+ @ ./src/layout/index.tsx 7:0-47 17:18-26 47:39-51
+ @ ./src/App.tsx 7:0-34 16:39-49
+ @ ./src/bootstrap.tsx 7:0-24 11:33-36
+ @ ./src/index.ts 4:0-21
+
+webpack 5.67.0 compiled with 1 error in 2720 ms
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+No issues found.

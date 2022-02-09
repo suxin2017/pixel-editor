@@ -1,13 +1,13 @@
 {
-  "name": "store",
+  "name": "@toy20/store",
   "version": "1.0.0",
   "author": "suxin2017",
   "license": "MIT",
-  "main": "./es/index",
-  "module": "./es/index",
+  "main": "./lib/index",
+  "module": "./lib/index",
   "scripts": {
-    "build": "father-build build",
-    "dev": "father-build build  --watch"
+    "build": "tsc",
+    "dev": "tsc -w"
   },
   "dependencies": {
     "@types/debug": "^4.1.7",
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.171",
+    "@types/react": "^17.0.38",
     "@types/uuid": "^8.3.1"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from "mobx";
 import React from "react";
-import { componentList } from "./componentList";
+import { ComponentList,componentList } from "./componentList";
 import { ComponentStore } from "../render/componentStore";
 import { IEditorComponent, ComponentType } from "../types";
 import { dsf } from "../utils/dsf";
@@ -15,9 +15,24 @@ export class EditorStore {
   @observable
   activeComponent?: ComponentStore;
 
+  @observable
+  componentList?: ComponentList;
+
+  @observable
+  init?: boolean;
+
   constructor(component?: ComponentStore) {
     makeObservable(this);
     this.component = component;
+    this.componentList = componentList;
+    this.init = false;
+  }
+
+  initResource() {
+    this.init = false;
+  }
+  finishInitResource() {
+    this.init = true;
   }
 
   @action
@@ -91,7 +106,7 @@ export class EditorStore {
 
   getActiveSetting() {
     if (this.activeComponent) {
-      return componentList.getEditorComponent(this.activeComponent.name)?.settingComponent;
+      return this.componentList?.getEditorComponent(this.activeComponent.name)?.settingComponent;
     }
   }
 

@@ -18,6 +18,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "sourceMap": true
+    "sourceMap": true,
+    "outDir": "./lib",
   },
 }

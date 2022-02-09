@@ -7,17 +7,22 @@
       "esnext"
     ],
     "declaration":true,
+    "allowJs": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "useDefineForClassFields":true,
     "experimentalDecorators":true,
-    "skipLibCheck": true,
+    "useDefineForClassFields":true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "react-jsx",
-    "outDir": "./lib",
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
+  "include": [
+    "./src"
+  ]
 }
